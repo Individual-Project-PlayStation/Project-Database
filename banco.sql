@@ -32,10 +32,12 @@ SELECT * FROM tbMetrica;
 -- -----------------------------------SELECTS DA API
 
 -- RANKING
-SELECT tbUsuario.nome, erros, acertos FROM tbMetrica 
+SELECT tbUsuario.nome, fkQuiz, DATE_FORMAT(dataInicio, '%d/%m/%Y %H:%i:%s') AS 'Data', acertos FROM tbMetrica 
 	join tbUsuario 
-		on idUsuario = fkUsuario	
-			ORDER BY acertos DESC;
+	on idUsuario = fkUsuario
+		join tbQuiz
+        on idQuiz = fkQuiz
+			ORDER BY acertos desc, Data DESC;
    
    
 -- PROGRESSO            
